@@ -1,8 +1,10 @@
 project:
   type: website
+  output-dir: docs
+
 
 website:
-  title: "franciszek"
+  title: "frankilicious1.github.io"
   navbar:
     left:
       - href: index.qmd
