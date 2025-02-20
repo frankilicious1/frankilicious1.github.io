@@ -6,6 +6,9 @@ format:
   html:
     toc: false
     theme: cosmo
+image: Lana.jpeg
+about:
+  template: jolla
 ---
 
 <style>
