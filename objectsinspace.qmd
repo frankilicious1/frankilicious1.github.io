@@ -36,5 +36,3 @@ ggplot(launches_per_year, aes(x = Year, y = total_objects)) +
 
 
 ```
-
-test
