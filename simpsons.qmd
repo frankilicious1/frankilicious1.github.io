@@ -1,0 +1,39 @@
+---
+title: "Simpsons Average Episode Rating"
+---
+
+My graph shows the average IMDb rating of Simpsons episodes from 2010-2016 from the Tidyverse set made on 2025-02-04 with credit to Prashant Banerjee and Kaggle for making this data available to the public.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(ggplot2)
+library(dplyr)
+library(readr)
+
+simpsons_episodes <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-02-04/simpsons_episodes.csv')
+
+average_ratings <- simpsons_episodes %>%
+  group_by(original_air_year) %>%
+  summarize(average_rating = mean(imdb_rating, na.rm = TRUE)) %>%
+  filter(original_air_year >= 2010 & original_air_year <= 2016) %>%
+  arrange(desc(average_rating))
+
+best_year <- average_ratings %>%
+  slice_max(average_rating)
+
+ggplot(average_ratings, 
+       aes(x = original_air_year, y = average_rating)) +
+  geom_line(color = "blue") +
+  geom_point(alpha = 0.2) +
+  scale_x_continuous(breaks = 2010:2016) +
+  labs(title = "Average IMDb Rating of Simpsons Episodes (2010–2016)",
+       x = "Year",
+       y = "Average IMDb Rating") +
+  theme_minimal()
+
+
+
+```

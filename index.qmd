@@ -1,11 +1,15 @@
 ---
-title: "franciszek"
+title: "Frank's Website"
+author: "Frank"
+date: "2025-02-19"
+format: 
+  html:
+    toc: false
+    theme: cosmo
 ---
 
-This is a Quarto website.
+<style>
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+h1 { text-align: center; }
 
-```{r}
-1 + 1
-```
+------------------------------------------------------------------------

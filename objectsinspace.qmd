@@ -1,0 +1,40 @@
+---
+title: "Annual Number of Objects Launched In Outer Space"
+format: html
+execute: 
+  warning: false
+  message: false
+---
+
+Here, my graph shows the number of objects launched into space from 1960 until present day. Credit goes to Our World in Data and the United Nations Office for Outer Space Affairs since 1962.
+
+```{r, echo = FALSE}
+library(ggplot2)
+library(dplyr)
+library(readr)
+
+outer_space_objects <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-04-23/outer_space_objects.csv')
+
+launches_per_year <- outer_space_objects %>%
+  group_by(Year) %>%
+  summarize(total_objects = sum(num_objects, na.rm = TRUE)) %>%
+  arrange(Year)
+
+max_launch_year <- launches_per_year %>%
+  filter(total_objects == max(total_objects))
+
+ggplot(launches_per_year, aes(x = Year, y = total_objects)) +
+  geom_line(color = "blue") +
+  geom_point(alpha = 0.2) +
+  geom_text(aes(label = ifelse(total_objects == max(total_objects), 
+                               paste0(total_objects, " launches"), ""))) +
+  labs(title = "Trend of Space Object Launches by Year",
+       x = "Year",
+       y = "Number of Objects Launched") +
+  theme_minimal()
+
+
+
+```
+
+test

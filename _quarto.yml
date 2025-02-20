@@ -9,8 +9,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
-
+      - href: about.qmd
+        text: About
+      - text: Data
+        menu:
+          - href: simpsons.qmd
+            text: Simpsons
+          - href: objectsinspace.qmd
+            text: Objects In Space
 format:
   html:
     theme: cosmo

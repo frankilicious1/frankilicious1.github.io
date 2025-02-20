@@ -2,8 +2,4 @@
 title: "About"
 ---
 
-About this site
-
-```{r}
-1 + 1
-```
+Hi there, my name is Frank and I am currently a sophomore at Pomona College! I was raised in Chicago but originally was born in Poland. I enjoy hiking, visiting new places, biking, and finding new TV shows to binge. Currently, my favorite show to watch is Sex and the City!
