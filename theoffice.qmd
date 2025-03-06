@@ -2,72 +2,92 @@
 title: "The Office!"
 ---
 
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
+```{r setup, include=FALSE}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(readr)
+  library(tidyverse)
+  library(stringr)
+})
 
-library(ggplot2)
-library(dplyr)
-library(readr)
-library(tidyverse)
-library(stringr)
+```
 
+The source of this code is from the Kaggle website showcasing every quote from every season of The Office, acquired by officequotes.net
 
-office_lines <- readr::read_csv('the-office_lines.csv')
-office_lines$lower_line <- tolower(office_lines$Line)
-hey_lines <- office_lines %>%
-  filter(str_detect(lower_line, "\\bhey\\b"))
+This first line of code visualizes what word comes up the most after a character in The Office says 'hey'! It makes sense that after hey the most common word said is guys, probably Michael coming in to annoy everyone in the workplace!
 
-hey_words <- hey_lines %>%
-  mutate(after_hey = word(lower_line, 2)) %>% 
-  filter(!is.na(after_hey) & after_hey != "") %>% 
-  count(after_hey, sort = TRUE) %>%
-  slice_max(n, n = 10)  
-ggplot(hey_words, aes(x = reorder(after_hey, n), y = n, fill = after_hey)) +
+```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+
+office_lines <- read_csv('the-office_lines.csv', show_col_types = FALSE)
+
+office_lines <- office_lines %>%
+  mutate(lower_line = str_to_lower(Line),
+         after_hey = str_extract(lower_line, "(?<=\\bhey )\\w+"))  
+
+hey_counts <- office_lines %>%
+  filter(!is.na(after_hey) & after_hey != "") %>%
+  group_by(after_hey) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>%  
+  head(10)
+
+ggplot(hey_counts, aes(x = after_hey, y = count, fill = after_hey)) +
   geom_col(show.legend = FALSE) +
   labs(
     title = "Most Common Names After 'Hey' in The Office",
     x = "Name",
     y = "Count"
   ) +
-  coord_flip()
-
+  coord_flip() 
 
 ```
 
-```{r}
-office_lines$like_count <- str_count(office_lines$Line, "\\blike\\b")
+I thought I was on to something with this idea, thinking there would be some clear distinctions with this question. But I guess it makes sense that everyone is speaking the same length, with Gabe interestingly enough having the longest sentences? It does seem like his intonation always made him sound like he was speaking forever though.
 
-like_usage <- office_lines %>%
+```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+
+office_lines <- office_lines %>%
+  mutate(line_length = str_length(Line)) 
+
+talkative_characters <- office_lines %>%
   group_by(Character) %>%
-  summarise(total_likes = sum(like_count, na.rm = TRUE)) %>%
-  slice_max(total_likes, n = 10)  # Top 10 characters
+  summarise(total_lines = n(),  
+            avg_line_length = mean(line_length, na.rm = TRUE)) %>%
+  arrange(desc(avg_line_length)) %>%  # Sort data in descending order
+  head(10)
 
-ggplot(like_usage, aes(x = reorder(Character, total_likes), y = total_likes, fill = Character)) +
+ggplot(talkative_characters, aes(x = Character, y = avg_line_length, fill = Character)) +
   geom_col(show.legend = FALSE) +
   labs(
-    title = "Who Says 'Like' the Most?",
+    title = "Characters Who Speak in the Longest Sentences",
     x = "Character",
-    y = "Count of 'Like'"
+    y = "Average Line Length (Characters)"
   ) +
-  coord_flip()
+  coord_flip()  
 
 ```
 
-```{r}
-lines_per_character <- office_lines %>%
-  count(Character, sort = TRUE) %>%
-  slice_max(n, n = 10)  # Top 10 most talkative characters
+This one I could have easily predicted! I feel like I can always hear Michael's voice in the back of my head, muttering some wild expletive in the office that is most definitely not HR appropriate. Jim comes to a near second, which is not something I expected in this dataset. It seems Ryan is not inquisitive at all, and neither are Roy or David. I think David was in corporate right?
 
-# Plot results
-ggplot(lines_per_character, aes(x = reorder(Character, n), y = n, fill = Character)) +
+```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+
+office_lines <- office_lines %>%
+  mutate(is_question = str_detect(Line, "\\?$")) 
+
+question_askers <- office_lines %>%
+  filter(is_question) %>%
+  group_by(Character) %>%
+  summarise(question_count = n()) %>%
+  arrange(desc(question_count)) %>% 
+  head(10) 
+
+ggplot(question_askers, aes(x = Character, y = question_count, fill = Character)) +
   geom_col(show.legend = FALSE) +
   labs(
-    title = "Most Talkative Characters in The Office",
+    title = "Who Asks the Most Questions?",
     x = "Character",
-    y = "Number of Lines Spoken"
+    y = "Number of Questions Asked"
   ) +
-  coord_flip()
+  coord_flip()  
 
 ```
