@@ -17,6 +17,8 @@ website:
             text: Simpsons
           - href: objectsinspace.qmd
             text: Objects In Space
+          - href: theoffice.qmd
+            text: The Office
 format:
   html:
     theme: cosmo

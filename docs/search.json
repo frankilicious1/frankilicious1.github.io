@@ -33,5 +33,12 @@
     "title": "Frank’s Website",
     "section": "",
     "text": "Github Repo: https://github.com/frankilicious1/frankilicious1.github.io.git"
+  },
+  {
+    "objectID": "theoffice.html",
+    "href": "theoffice.html",
+    "title": "The Office!",
+    "section": "",
+    "text": "office_lines$like_count &lt;- str_count(office_lines$Line, \"\\\\blike\\\\b\")\n\nlike_usage &lt;- office_lines %&gt;%\n  group_by(Character) %&gt;%\n  summarise(total_likes = sum(like_count, na.rm = TRUE)) %&gt;%\n  slice_max(total_likes, n = 10)  # Top 10 characters\n\nggplot(like_usage, aes(x = reorder(Character, total_likes), y = total_likes, fill = Character)) +\n  geom_col(show.legend = FALSE) +\n  labs(\n    title = \"Who Says 'Like' the Most?\",\n    x = \"Character\",\n    y = \"Count of 'Like'\"\n  ) +\n  coord_flip()\n\n\n\n\n\n\n\n\n\nlines_per_character &lt;- office_lines %&gt;%\n  count(Character, sort = TRUE) %&gt;%\n  slice_max(n, n = 10)  # Top 10 most talkative characters\n\n# Plot results\nggplot(lines_per_character, aes(x = reorder(Character, n), y = n, fill = Character)) +\n  geom_col(show.legend = FALSE) +\n  labs(\n    title = \"Most Talkative Characters in The Office\",\n    x = \"Character\",\n    y = \"Number of Lines Spoken\"\n  ) +\n  coord_flip()"
   }
 ]

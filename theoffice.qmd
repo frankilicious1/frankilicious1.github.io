@@ -1,0 +1,73 @@
+---
+title: "The Office!"
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(tidyverse)
+library(stringr)
+
+
+office_lines <- readr::read_csv('the-office_lines.csv')
+office_lines$lower_line <- tolower(office_lines$Line)
+hey_lines <- office_lines %>%
+  filter(str_detect(lower_line, "\\bhey\\b"))
+
+hey_words <- hey_lines %>%
+  mutate(after_hey = word(lower_line, 2)) %>% 
+  filter(!is.na(after_hey) & after_hey != "") %>% 
+  count(after_hey, sort = TRUE) %>%
+  slice_max(n, n = 10)  
+ggplot(hey_words, aes(x = reorder(after_hey, n), y = n, fill = after_hey)) +
+  geom_col(show.legend = FALSE) +
+  labs(
+    title = "Most Common Names After 'Hey' in The Office",
+    x = "Name",
+    y = "Count"
+  ) +
+  coord_flip()
+
+
+```
+
+```{r}
+office_lines$like_count <- str_count(office_lines$Line, "\\blike\\b")
+
+like_usage <- office_lines %>%
+  group_by(Character) %>%
+  summarise(total_likes = sum(like_count, na.rm = TRUE)) %>%
+  slice_max(total_likes, n = 10)  # Top 10 characters
+
+ggplot(like_usage, aes(x = reorder(Character, total_likes), y = total_likes, fill = Character)) +
+  geom_col(show.legend = FALSE) +
+  labs(
+    title = "Who Says 'Like' the Most?",
+    x = "Character",
+    y = "Count of 'Like'"
+  ) +
+  coord_flip()
+
+```
+
+```{r}
+lines_per_character <- office_lines %>%
+  count(Character, sort = TRUE) %>%
+  slice_max(n, n = 10)  # Top 10 most talkative characters
+
+# Plot results
+ggplot(lines_per_character, aes(x = reorder(Character, n), y = n, fill = Character)) +
+  geom_col(show.legend = FALSE) +
+  labs(
+    title = "Most Talkative Characters in The Office",
+    x = "Character",
+    y = "Number of Lines Spoken"
+  ) +
+  coord_flip()
+
+```
