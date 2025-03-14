@@ -1,9 +1,5 @@
 ---
 title: "The Office!"
-format:
-  html:
-    code-fold: true
-    code-tools: true
 ---
 
 ```{r setup, include=FALSE}
@@ -16,9 +12,15 @@ suppressPackageStartupMessages({
 
 ```
 
+
+
+
 The source of this code is from the Kaggle website showcasing every quote from every season of The Office, acquired by officequotes.net
 
 This first line of code visualizes what word comes up the most after a character in The Office says 'hey'! It makes sense that after hey the most common word said is guys, probably Michael coming in to annoy everyone in the workplace!
+
+
+
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 
@@ -46,7 +48,13 @@ ggplot(hey_counts, aes(x = after_hey, y = count, fill = after_hey)) +
 
 ```
 
+
+
+
 I thought I was on to something with this idea, thinking there would be some clear distinctions with this question. But I guess it makes sense that everyone is speaking the same length, with Gabe interestingly enough having the longest sentences? It does seem like his intonation always made him sound like he was speaking forever though.
+
+
+
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 
@@ -71,7 +79,13 @@ ggplot(talkative_characters, aes(x = Character, y = avg_line_length, fill = Char
 
 ```
 
+
+
+
 This one I could have easily predicted! I feel like I can always hear Michael's voice in the back of my head, muttering some wild expletive in the office that is most definitely not HR appropriate. Jim comes to a near second, which is not something I expected in this dataset. It seems Ryan is not inquisitive at all, and neither are Roy or David. I think David was in corporate right?
+
+
+
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 
@@ -96,4 +110,8 @@ ggplot(question_askers, aes(x = Character, y = question_count, fill = Character)
 
 ```
 
+
+
+
 Thanks for reading prof!
+
