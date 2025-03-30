@@ -19,6 +19,8 @@ website:
             text: Objects In Space
           - href: theoffice.qmd
             text: The Office
+          - href: postoffice.qmd
+            text: Post Office Permutation Test
 format:
   html:
     theme: cosmo
