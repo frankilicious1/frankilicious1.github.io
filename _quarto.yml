@@ -21,6 +21,8 @@ website:
             text: The Office
           - href: postoffice.qmd
             text: Post Office Permutation Test
+          - href: ethics.qmd
+            text: Ethics Project
 format:
   html:
     theme: cosmo
