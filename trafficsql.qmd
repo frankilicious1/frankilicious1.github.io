@@ -1,20 +1,25 @@
 ---
 title: "Traffic Data SQL"
----
 format:
-  html: 
+  html:
+    code-fold: true
     code-tools:
       source: true
-      toggle: false
+      toggle: true
       caption: "Code"
-
+editor: visual
+bibliography: stanfordref.bib
+citeproc: true
+execute:
+  warning: false
+  message: false
 ---
 
 **Introduction**
 
-This SQL wrangling analysis focuses on the Stanford Open Policing Project which standardizes data on vehicle and pedestrian spots from law enforcement across the country in order to combine statistical analysis and data journalism. My project focuses on the data from Charlotte, Chicago, and New Orleans, with this data coming from the Stanford Open Policing Project published by Pierson et al. (2020). All of the data is from 2020 but Chicago's is specifically from 2023. The population sizes of the cities do vary since Charlotte has approximately 900,000 individuals, Chicago having 2.6 million, and New Orleans having 364,000. While this may seem unusual to analyze cities in such different populations, I wanted to have a city of a small, medium, and large caliber so that the metric used of search rate per stop controls for total stop volume.
+This SQL wrangling analysis focuses on the Stanford Open Policing Project @piersons which standardizes data on vehicle and pedestrian spots from law enforcement across the country in order to combine statistical analysis and data journalism. My project focuses on the data from Charlotte, Chicago, and New Orleans, with this data coming from the Stanford Open Policing Project published by Pierson et al. (2020). @piersons All of the data is from 2020 but Chicago's is specifically from 2023. The population sizes of the cities do vary since Charlotte has approximately 900,000 individuals, Chicago having 2.6 million, and New Orleans having 364,000. While this may seem unusual to analyze cities in such different populations, I wanted to have a city of a small, medium, and large caliber so that the metric used of search rate per stop controls for total stop volume.
 
-```{r}
+```{r, echo=FALSE}
 con_traffic <- DBI::dbConnect(
   RMariaDB::MariaDB(),
   dbname = "traffic",
@@ -25,7 +30,7 @@ con_traffic <- DBI::dbConnect(
 )
 ```
 
-```{sql connection= con_traffic, output.var = "age_data"}
+```{sql connection= con_traffic, output.var = "age_data", echo=FALSE}
 SELECT 
   city,
   CASE 
@@ -68,7 +73,7 @@ ORDER BY city,
 
 This bar chart compares the search rate by age group across Charlotte, Chicago, and New Orleans.
 
-```{r}
+```{r, echo=FALSE}
 
 library(ggplot2)
 
@@ -84,7 +89,7 @@ ggplot(age_data, aes(x = age_group, y = search_rate, fill = city)) +
 
 New Orleans stands out as having the highest search rates among all age demographics, especially for drivers under 30 with the rate being around 0.2 for minors and just above 0.15 for adults under 30. Charlotte has search rates that are a bit more moderate and declining with age, while Chicago's search rates remain much lower regardless of age. Some reasons for New Orleans have such high search rates may be due to reports of the city over policing its communities. Even though the height of this controversy was in 2013, the remnants of this may still remain. Chicago may have placed more reforms for its policing efforts, especially since its 2014 case with Laquan McDonald sparked controversy in communities. Chicago may have shifted their policing more towards data-driven policing or citation based enforcement so there aren't as many physical searches. In addition, training methods in police departments across the U.S. may vary extensively which can account for Chicago's low search rates regardless of age group.
 
-```{r}
+```{r, echo=FALSE}
 library(ggplot2)
 ggplot(age_data, aes(x = age_group, y = arrest_rate, fill = city)) +
   geom_col(position = "dodge") +
@@ -98,7 +103,7 @@ ggplot(age_data, aes(x = age_group, y = arrest_rate, fill = city)) +
 
 The arrest rates tell quite a story here across the cities of Charlotte, Chicago, and New Orleans. New Orleans has a massively higher arrest rate for minors with it being at almost 28%. Chicago has high arrests for adults 18-45 with them being almost at 20%. Despite Chicago having low search rates, stops likely escalate to arrests. Charlotte consistently across age groups has lower arrest rates, with this indicating extreme variance in how these cities approach policing. The 28% arrest rate for minors in New Orleans is a bit alarming because of overcriminalization in youth and how this may shape their future having a record. This is why understanding the factors of policing is critical to ensuring healthy communities that are functional.
 
-```{sql connection= con_traffic}
+```{sql connection= con_traffic, echo=FALSE}
 SELECT 
   CASE 
     WHEN subject_age < 18 THEN '<18'
@@ -125,7 +130,7 @@ ORDER BY
 
 In Charlotte's situation, search rates and arrest rates decline with wage. These rates are in the medium ratio compared to Chicago and New Orleans. There is an arrest rate that is highest with minors and younger adults, lining up with other relationships. There is a clear age-related disparity in enforcement, especially since senior citizens have less than 1% of search and arrest rates based on total stops.
 
-```{sql connection= con_traffic}
+```{sql connection= con_traffic, echo=FALSE}
 SELECT 
   CASE 
     WHEN subject_age < 18 THEN '<18'
@@ -153,7 +158,7 @@ ORDER BY
 
 Chicago has the lowest search rates with them never exceeding 1.53%. However, something that is interesting to note here is that even though 1% of individuals aged 18-30 are searched, over 17% are arrested. This may be due to stops being more warranted in Chicago, meaning they may be due to warrants or other severe violations that are not related to trivial stops like speeding.
 
-```{sql connection= con_traffic}
+```{sql connection= con_traffic, echo=FALSE}
 SELECT 
   CASE 
     WHEN subject_age < 18 THEN '<18'
