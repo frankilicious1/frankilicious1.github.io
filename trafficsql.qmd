@@ -1,0 +1,118 @@
+---
+title: "Traffic Data SQL Practice"
+---
+
+**Introduction**
+
+This SQL wrangling analysis focuses on the Stanford Open Policing Project which standardizes data on vehicle and pedestrian spots from law enforcement across the country in order to combine statistical analysis and data journalism. My project focuses on the data from Chicago, Houston, and Raleigh, with this data coming from the Stanford Open Policing Project published by Pierson et al. (2020).
+
+```{r}
+con_traffic <- DBI::dbConnect(
+  RMariaDB::MariaDB(),
+  dbname = "traffic",
+  host = Sys.getenv("TRAFFIC_HOST"),
+  user = Sys.getenv("TRAFFIC_USER"),
+  password = Sys.getenv("TRAFFIC_PWD")
+
+)
+```
+
+```{sql connection= con_traffic}
+SELECT 
+  state,
+  CASE 
+    WHEN subject_age < 18 THEN '<18'
+    WHEN subject_age BETWEEN 18 AND 30 THEN '18-30'
+    WHEN subject_age BETWEEN 31 AND 45 THEN '31-45'
+    WHEN subject_age BETWEEN 46 AND 60 THEN '46-60'
+    ELSE '60+'
+  END AS age_group,
+  COUNT(*) AS total_stops
+FROM (
+  SELECT 'Charlotte' AS state, subject_age, arrest_made, search_conducted
+  FROM nc_charlotte_2020_04_01
+  WHERE subject_age IS NOT NULL
+
+  UNION ALL
+
+  SELECT 'Chicago' AS state, subject_age, arrest_made, search_conducted
+  FROM il_chicago_2023_01_26
+  WHERE subject_age IS NOT NULL
+
+  UNION ALL
+
+  SELECT 'New Orleans' AS state, subject_age, arrest_made, search_conducted
+  FROM la_new_orleans_2020_04_01
+  WHERE subject_age IS NOT NULL
+) AS combined
+GROUP BY state, age_group
+ORDER BY state, age_group;
+
+```
+
+```{sql connection= con_traffic, output.var = "age_outcomes"}
+SELECT 
+  city,
+  CASE 
+    WHEN subject_age < 18 THEN '<18'
+    WHEN subject_age BETWEEN 18 AND 30 THEN '18–30'
+    WHEN subject_age BETWEEN 31 AND 45 THEN '31–45'
+    WHEN subject_age BETWEEN 46 AND 60 THEN '46–60'
+    ELSE '60+'
+  END AS age_group,
+  COUNT(*) AS total_stops,
+  ROUND(AVG(IFNULL(arrest_made, 0)), 4) AS arrest_rate,
+  ROUND(AVG(IFNULL(search_conducted, 0)), 4) AS search_rate
+FROM (
+  SELECT 'Charlotte' AS city, subject_age, arrest_made, search_conducted
+  FROM nc_charlotte_2020_04_01
+  WHERE subject_age IS NOT NULL
+
+  UNION ALL
+
+  SELECT 'Chicago' AS city, subject_age, IFNULL(arrest_made, 0), IFNULL(search_conducted, 0)
+  FROM il_chicago_2023_01_26
+  WHERE subject_age IS NOT NULL
+
+  UNION ALL
+
+  SELECT 'New Orleans' AS city, subject_age, arrest_made, search_conducted
+  FROM la_new_orleans_2020_04_01
+  WHERE subject_age IS NOT NULL
+) AS combined
+GROUP BY city, age_group
+ORDER BY city,
+  CASE 
+    WHEN age_group = '<18' THEN 1
+    WHEN age_group = '18–30' THEN 2
+    WHEN age_group = '31–45' THEN 3
+    WHEN age_group = '46–60' THEN 4
+    ELSE 5
+  END;
+```
+
+```{sql connection= con_traffic}
+SELECT city, COUNT(*) AS total_stops
+FROM (
+  SELECT 'Charlotte' AS city FROM nc_charlotte_2020_04_01
+  UNION ALL
+  SELECT 'Chicago' AS city FROM il_chicago_2023_01_26
+  UNION ALL
+  SELECT 'New Orleans' AS city FROM la_new_orleans_2020_04_01
+) AS combined
+GROUP BY city;
+
+```
+
+```{r}
+ggplot(age_outcomes, aes(x = age_group, y = search_rate, fill = city)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Search Rate by Age Group in Charlotte, Chicago, and New Orleans",
+    x = "Age Group",
+    y = "Search Rate",
+    fill = "City"
+  ) +
+  theme_minimal()
+
+```

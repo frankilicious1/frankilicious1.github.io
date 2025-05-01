@@ -23,6 +23,8 @@ website:
             text: Post Office Permutation Test
           - href: ethics.qmd
             text: Ethics Project
+          - href: trafficsql.qmd
+            text: Traffic SQL
 format:
   html:
     theme: cosmo
