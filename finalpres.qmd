@@ -20,7 +20,7 @@ editor: visual
 ::: panel-tabset
 ### Overview
 
--   Number of objects launched into space from 1960 until present day
+-   Number of objects launched into space from 1960 until present day today
 :::
 
 ::: panel-tabset
