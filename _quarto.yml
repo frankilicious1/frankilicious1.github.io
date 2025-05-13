@@ -25,6 +25,9 @@ website:
             text: Ethics Project
           - href: trafficsql.qmd
             text: Traffic SQL
+      - href: finalpres.qmd
+        text: Final Presentation
+
 format:
   html:
     theme: cosmo

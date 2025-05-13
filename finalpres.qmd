@@ -1,0 +1,171 @@
+---
+title: "Final Presentation"
+author: "Franciszek Wiercigroch"
+subtitle: "05/12/2025"
+format:
+  revealjs:
+    scrollable: true
+    slide-number: true
+    show-slide-number: all
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+editor: visual
+---
+
+## Project 1 – Objects Launched Into Space
+
+::: panel-tabset
+### Overview
+
+-   Two TidyTuesday datasets\
+-   Data on the total number of flights per month (2010–2018)\
+-   Data on the change in CO2 emission
+
+### Code Visualization
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(readr)
+
+outer_space_objects <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2024/2024-04-23/outer_space_objects.csv')
+
+launches_per_year <- outer_space_objects %>%
+  group_by(Year) %>%
+  summarize(total_objects = sum(num_objects, na.rm = TRUE)) %>%
+  arrange(Year)
+
+max_launch_year <- launches_per_year %>%
+  filter(total_objects == max(total_objects))
+
+ggplot(launches_per_year, aes(x = Year, y = total_objects)) +
+  geom_line(color = "blue") +
+  geom_point(alpha = 0.2) +
+  geom_text(aes(label = ifelse(total_objects == max(total_objects), 
+                               paste0(total_objects, " launches"), ""))) +
+  labs(title = "Trend of Space Object Launches by Year",
+       x = "Year",
+       y = "Number of Objects Launched") +
+  theme_minimal()
+```
+:::
+
+## Project 5 – Traffic Stops by Age Group
+
+### Overview
+
+-   Using the Stanford Open Policing Project\
+-   Comparing Charlotte, Chicago, and New Orleans\
+-   Focused on age-based disparities in search and arrest rates
+
+### Search Rate by Age 
+
+-   New Orleans has the highest search rates across all age groups
+
+-   Young drivers (under 30) face the most frequent searches
+
+-   Charlotte has moderate search rates that decline with age
+
+-   Chicago has consistently low search rates regardless of age
+
+```{r, echo=FALSE}
+con_traffic <- DBI::dbConnect(
+  RMariaDB::MariaDB(),
+  dbname = "traffic",
+  host = Sys.getenv("TRAFFIC_HOST"),
+  user = Sys.getenv("TRAFFIC_USER"),
+  password = Sys.getenv("TRAFFIC_PWD")
+)
+```
+
+```{sql, connection=con_traffic, output.var="age_data", echo=FALSE}
+SELECT 
+  city,
+  CASE 
+    WHEN subject_age < 18 THEN '<18'
+    WHEN subject_age BETWEEN 18 AND 30 THEN '18–30'
+    WHEN subject_age BETWEEN 31 AND 45 THEN '31–45'
+    WHEN subject_age BETWEEN 46 AND 60 THEN '46–60'
+    ELSE '60+'
+  END AS age_group,
+  COUNT(*) AS total_stops,
+  ROUND(AVG(IFNULL(search_conducted, 0)), 4) AS search_rate
+FROM (
+  SELECT 'Charlotte' AS city, subject_age, search_conducted
+  FROM nc_charlotte_2020_04_01
+  WHERE subject_age IS NOT NULL
+  UNION ALL
+  SELECT 'Chicago' AS city, subject_age, search_conducted
+  FROM il_chicago_2023_01_26
+  WHERE subject_age IS NOT NULL
+  UNION ALL
+  SELECT 'New Orleans' AS city, subject_age, search_conducted
+  FROM la_new_orleans_2020_04_01
+  WHERE subject_age IS NOT NULL
+) AS combined
+GROUP BY city, age_group
+ORDER BY city, age_group;
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(age_data, aes(x = age_group, y = search_rate, fill = city)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Search Rate by Age Group",
+    x = "Age Group",
+    y = "Search Rate",
+    fill = "City"
+  )
+```
+
+### Arrest Rate by Age
+
+-   Minors in New Orleans are arrested in nearly 28% of stops
+
+-   Chicago shows high arrest rates for ages 18–45 despite low search rates
+
+-   Arrest trends reveal major differences in how cities enforce stops by age
+
+```{sql, connection=con_traffic, output.var="arrest_data", echo=FALSE}
+SELECT 
+  city,
+  CASE 
+    WHEN subject_age < 18 THEN '<18'
+    WHEN subject_age BETWEEN 18 AND 30 THEN '18–30'
+    WHEN subject_age BETWEEN 31 AND 45 THEN '31–45'
+    WHEN subject_age BETWEEN 46 AND 60 THEN '46–60'
+    ELSE '60+'
+  END AS age_group,
+  ROUND(AVG(IFNULL(arrest_made, 0)), 4) AS arrest_rate
+FROM (
+  SELECT 'Charlotte' AS city, subject_age, arrest_made
+  FROM nc_charlotte_2020_04_01
+  WHERE subject_age IS NOT NULL
+  UNION ALL
+  SELECT 'Chicago' AS city, subject_age, arrest_made
+  FROM il_chicago_2023_01_26
+  WHERE subject_age IS NOT NULL
+  UNION ALL
+  SELECT 'New Orleans' AS city, subject_age, arrest_made
+  FROM la_new_orleans_2020_04_01
+  WHERE subject_age IS NOT NULL
+) AS combined
+GROUP BY city, age_group
+ORDER BY city, age_group;
+```
+
+```{r}
+ggplot(arrest_data, aes(x = age_group, y = arrest_rate, fill = city)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Arrest Rate by Age Group",
+    x = "Age Group",
+    y = "Arrest Rate",
+    fill = "City"
+  )
+```
