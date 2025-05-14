@@ -19,17 +19,21 @@ This dataset provides context for how many post offices were implemented yearly 
 
 Acknowledging the critical role post offices played in the development of the U.S., it is fascinating to visualize and interpret this data to see how the priority of post offices for vital communication and shipping may have changed in the past centuries. This is especially so since this data allows visualization of U.S. infrastructure growth in recent years as well as U.S. westward expansion.
 
-```{r, echo=FALSE}
+In the plot above, we see the number of post offices built from 1800 to 2000. There is a clear surge in the 1800s with this number eventually dwindling down, fueling the hypothesis for this project since there may have been more of an emphasis in post offices in the 1800s.
 
+In this histogram running our permutation test, we observe the null distribution of the difference in average post offices per decade between early and modern periods. This assumes "early" and "modern" have no real effect under the null hypothesis. Each bar is one of 1,000 simulated differences after the labels had been randomly shuffled.
 
+The red dashed value is our observed value is quite far to the right, suggesting that a drastic difference is not likely just because of chance. This provides evidence for our hypothesis that the early period of the U.S. before 1900 had much more post office development than the modern period. This makes sense since U.S. historical expansion was quite concentrated in the 1800s as westward expansion was in its prime as well as the U.S. government attempting to spread out its infrastructure. mean(null_diffs \>= obs_diff)
 
+The p-value being 0.005 means only 0.5% of the permuted differences were as large as the observed ones, rejecting the null hypothesis. This supports that the pre-1900s saw more growth in post offices than the modern period. This is an interesting glimpse into the early development of the United States and how the value of post offices may have shifted over the history of our country as well our priorities as a society.
+
+```{r, echo = FALSE, fig.alt: "Bar chart showing the number of post offices established per decade from 1800 to 2020. There is a rise during the 1800s, followed by a decline in the 20th century. Bars are colored based on if they fall in the early period (before 1900) or modern period (after 1900). Histogram shows the null distribution of differences in average post office establishments per decade between early and modern periods. A red dashed vertical line shows the observed difference, which lies on the far right side of the distribution. The p-value is 0.005}
 
 library(tidyverse)
 
-
 post_offices <- read_csv("post_offices.csv") |>
-filter(!is.na(established) & established >= 1800 & established <= 2020) |>
-mutate(est_decade = established - established %% 10)
+  filter(!is.na(established), established >= 1800, established <= 2020) |>
+  mutate(est_decade = established - established %% 10)
 
 decade_summary <- post_offices |>
   count(est_decade) |>
@@ -45,54 +49,34 @@ ggplot(decade_summary, aes(x = est_decade, y = n, fill = period)) +
     fill = "Time Period"
   ) +
   theme_minimal()
-```
-
-In the plot above, we see the number of post offices built from 1800 to 2000. There is a clear surge in the 1800s with this number eventually dwindling down, fueling the hypothesis for this project since there may have been more of an emphasis in post offices in the 1800s.
-
-```{r echo = FALSE}
-library(tidyverse)
-post_offices <- read_csv("post_offices.csv") |>
-filter(!is.na(established) & established >= 1800 & established <= 2020) |>
-mutate(est_decade = established - established %% 10)
-
-
-decade_summary <- post_offices |>
-  count(est_decade) |>
-  filter(est_decade >= 1800) |>
-  mutate(period = ifelse(est_decade < 1900, "early", "modern"))
-
-head(decade_summary)
 
 obs_diff <- decade_summary |>
   group_by(period) |>
-  summarize(mean_n = mean(n)) |>
-  summarize(diff = mean_n[period == "early"] - mean_n[period == "modern"]) |>
+  summarize(mean_n = mean(n), .groups = "drop") |>
+ arrange(factor(period, levels = c("modern", "early"))) |>
+summarize(diff = diff(mean_n)) |>
   pull(diff)
 
-obs_diff
-
 permute_diff <- function(df = decade_summary) {
-  shuffled_period <- sample(df$period)  # randomly shuffle early/modern labels
-
   df |>
-    mutate(shuffled = shuffled_period) |>
+    mutate(shuffled = sample(period)) |>
     group_by(shuffled) |>
-    summarize(mean_n = mean(n)) |>
-    summarize(diff = mean_n[shuffled == "early"] - mean_n[shuffled == "modern"]) |>
+    summarize(mean_n = mean(n), .groups = "drop") |>
+   arrange(factor(shuffled, levels = c("modern", "early"))) |>
+summarize(diff = diff(mean_n)) |>
     pull(diff)
 }
 
 set.seed(2025)
-
 null_diffs <- map_dbl(1:1000, ~permute_diff())
 
 tibble(null_diff = null_diffs) |>
   ggplot(aes(x = null_diff)) +
   geom_histogram(bins = 30) +
-  geom_vline(xintercept = obs_diff) +
+  geom_vline(xintercept = obs_diff, color = "red", linetype = "dashed") +
   labs(
     title = "Permutation Test: Post Office Establishment Trend",
-    subtitle = "Null distribution of difference in means (early - modern)",
+    subtitle = "Null distribution of difference in means",
     x = "Difference in mean # of post offices per decade",
     y = "Frequency"
   ) +
@@ -101,10 +85,10 @@ tibble(null_diff = null_diffs) |>
 mean(null_diffs >= obs_diff)
 
 
+
+
 ```
 
-In this histogram running our permutation test, we observe the null distribution of the difference in average post offices per decade between early and modern periods. This assumes "early" and "modern" have no real effect under the null hypothesis. Each bar is one of 1,000 simulated differences after the labels had been randomly shuffled.
+Originally, this is a TidyTuesday analysis by jonthegeek. This data comes form Cameron Blevins and Richard W. Helbock. They have 166,140 post offices in the United States between 1639 and 2000. Through this, we see a year-by-year snapshot of the national postal system over several decades, making this an extremely expansive data set.
 
-The red dashed value is our observed value is quite far to the right, suggesting that a drastic difference is not likely just because of chance. This provides evidence for our hypothesis that the early period of the U.S. before 1900 had much more post office development than the modern period. This makes sense since U.S. historical expansion was quite concentrated in the 1800s as westward expansion was in its prime as well as the U.S. government attempting to spread out its infrastructure. mean(null_diffs \>= obs_diff)
-
-The p-value being 0.005 means only 0.5% of the permuted differences were as large as the observed ones, rejecting the null hypothesis. This supports that the pre-1900s saw more growth in post offices than the modern period. This is an interesting glimpse into the early development of the United States and how the value of post offices may have shifted over the history of our country as well our priorities as a society.
+"Blevins, Cameron; Helbock, Richard W., 2021, "US Post Offices", <https://doi.org/10.7910/DVN/NUKCNA>, Harvard Dataverse, V1, UNF:6:8ROmiI5/4qA8jHrt62PpyA== \[fileUNF\]"

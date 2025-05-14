@@ -4,10 +4,13 @@ title: "Simpsons Average Episode Rating"
 
 My graph shows the average IMDb rating of Simpsons episodes from 2010-2016 from the Tidyverse set made on 2025-02-04 with credit to Prashant Banerjee and Kaggle for making this data available to the public.
 
+This data is taken from a Tidy Tuesday Github repository which explores a Kaggle Simpsons dataset of 600 Simpsons episodes. Further, the Kaggle dataset rehosted the original data scrape which occurred in 2016 with credit to Todd Schneider.. A lot of hierarchy to data, I know.
+
 ```{r}
 #| echo: false
 #| warning: false
 #| message: false
+#| fig.alt: "Line plot showing the average IMDb rating of Simpsons episodes from 2010 to 2016. Ratings  decline over time, with the highest average rating occurring in the earliest years."
 
 library(ggplot2)
 library(dplyr)
@@ -35,5 +38,9 @@ ggplot(average_ratings,
   theme_minimal()
 
 
-
 ```
+Banerjee, P. (n.d.). The Simpsons dataset. Kaggle. <https://www.kaggle.com/datasets/prashant111/the-simpsons-dataset>
+
+Data Science Learning Community. (2025, February 4). Donuts, data, and D'oh – A deep dive into The Simpsons [Data set]. GitHub. <https://github.com/rfordatascience/tidytuesday/blob/main/data/2025/2025-02-04/readme.md>
+
+Schneider, T. W. (2016, September 28). The Simpsons by the data. Todd W. Schneider. <https://toddwschneider.com/posts/the-simpsons-by-the-data/>

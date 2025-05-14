@@ -24,7 +24,6 @@ editor: visual
 :::
 
 ::: panel-tabset
-
 ### Code Visualization
 
 ```{r}
@@ -62,7 +61,7 @@ ggplot(launches_per_year, aes(x = Year, y = total_objects)) +
 -   Comparing Charlotte, Chicago, and New Orleans\
 -   Focused on age-based disparities in search and arrest rates
 
-### Search Rate by Age 
+### Search Rate by Age
 
 -   New Orleans has the highest search rates across all age groups
 
