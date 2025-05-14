@@ -154,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./ethics.html">
- <span class="dropdown-text">Ethics Project</span></a>
+ <span class="dropdown-text">Ethics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./trafficsql.html">
@@ -162,6 +162,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./finalpres.html"> 
+<span class="menu-text">Final Presentation</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -207,6 +211,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The data for this project of post offices that operated in the United States between 1639-2000 comes from Cameron Blevins and Richard W. Helbock in the Harvard Dataverse. For this project, I chose the first option which is conducting a permutation test by simulator behavior under the null hypothesis. Specifically, I sought to see whether the average number of post offices established on a per decade basis has decreased in recent years, specifically before 1900 compared to after 1900 until 2000.</p>
 <p>This dataset provides context for how many post offices were implemented yearly since the birth of the U.S. I mutated another variable into established decade in order to group the amount of post offices built into a decade basis for easier visualization. Then, this data is grouped into an early time period which is before 1900 and then after 1900 which would be considered modern time.</p>
 <p>Acknowledging the critical role post offices played in the development of the U.S., it is fascinating to visualize and interpret this data to see how the priority of post offices for vital communication and shipping may have changed in the past centuries. This is especially so since this data allows visualization of U.S. infrastructure growth in recent years as well as U.S. westward expansion.</p>
+<p>In the plot above, we see the number of post offices built from 1800 to 2000. There is a clear surge in the 1800s with this number eventually dwindling down, fueling the hypothesis for this project since there may have been more of an emphasis in post offices in the 1800s.</p>
+<p>In this histogram running our permutation test, we observe the null distribution of the difference in average post offices per decade between early and modern periods. This assumes “early” and “modern” have no real effect under the null hypothesis. Each bar is one of 1,000 simulated differences after the labels had been randomly shuffled.</p>
+<p>The red dashed value is our observed value is quite far to the right, suggesting that a drastic difference is not likely just because of chance. This provides evidence for our hypothesis that the early period of the U.S. before 1900 had much more post office development than the modern period. This makes sense since U.S. historical expansion was quite concentrated in the 1800s as westward expansion was in its prime as well as the U.S. government attempting to spread out its infrastructure. mean(null_diffs &gt;= obs_diff)</p>
+<p>The p-value being 0.005 means only 0.5% of the permuted differences were as large as the observed ones, rejecting the null hypothesis. This supports that the pre-1900s saw more growth in post offices than the modern period. This is an interesting glimpse into the early development of the United States and how the value of post offices may have shifted over the history of our country as well our priorities as a society.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -215,27 +223,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-</div>
-<p>In the plot above, we see the number of post offices built from 1800 to 2000. There is a clear surge in the 1800s with this number eventually dwindling down, fueling the hypothesis for this project since there may have been more of an emphasis in post offices in the 1800s.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  est_decade     n period
-       &lt;dbl&gt; &lt;int&gt; &lt;chr&gt; 
-1       1800  1436 early 
-2       1810  2503 early 
-3       1820  5944 early 
-4       1830  8480 early 
-5       1840  7829 early 
-6       1850 16271 early </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 9990.764</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="postoffice_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="postoffice_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -243,9 +234,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 0.005</code></pre>
 </div>
 </div>
-<p>In this histogram running our permutation test, we observe the null distribution of the difference in average post offices per decade between early and modern periods. This assumes “early” and “modern” have no real effect under the null hypothesis. Each bar is one of 1,000 simulated differences after the labels had been randomly shuffled.</p>
-<p>The red dashed value is our observed value is quite far to the right, suggesting that a drastic difference is not likely just because of chance. This provides evidence for our hypothesis that the early period of the U.S. before 1900 had much more post office development than the modern period. This makes sense since U.S. historical expansion was quite concentrated in the 1800s as westward expansion was in its prime as well as the U.S. government attempting to spread out its infrastructure. mean(null_diffs &gt;= obs_diff)</p>
-<p>The p-value being 0.005 means only 0.5% of the permuted differences were as large as the observed ones, rejecting the null hypothesis. This supports that the pre-1900s saw more growth in post offices than the modern period. This is an interesting glimpse into the early development of the United States and how the value of post offices may have shifted over the history of our country as well our priorities as a society.</p>
+<p>Originally, this is a TidyTuesday analysis by jonthegeek. This data comes form Cameron Blevins and Richard W. Helbock. They have 166,140 post offices in the United States between 1639 and 2000. Through this, we see a year-by-year snapshot of the national postal system over several decades, making this an extremely expansive data set.</p>
+<p>“Blevins, Cameron; Helbock, Richard W., 2021,”US Post Offices”, <a href="https://doi.org/10.7910/DVN/NUKCNA" class="uri">https://doi.org/10.7910/DVN/NUKCNA</a>, Harvard Dataverse, V1, UNF:6:8ROmiI5/4qA8jHrt62PpyA== [fileUNF]”</p>
 
 
 <!-- -->
@@ -723,116 +713,102 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Post Office Development Permutation Test"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Franciszek Wiercigroch"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html: </span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools:</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">      source: true</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">      toggle: false</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">      caption: "Code"</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>The data for this project of post offices that operated in the United States between 1639-2000 comes from Cameron Blevins and Richard W. Helbock in the Harvard Dataverse. For this project, I chose the first option which is conducting a permutation test by simulator behavior under the null hypothesis. Specifically, I sought to see whether the average number of post offices established on a per decade basis has decreased in recent years, specifically before 1900 compared to after 1900 until 2000.</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>This dataset provides context for how many post offices were implemented yearly since the birth of the U.S. I mutated another variable into established decade in order to group the amount of post offices built into a decade basis for easier visualization. Then, this data is grouped into an early time period which is before 1900 and then after 1900 which would be considered modern time.</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>Acknowledging the critical role post offices played in the development of the U.S., it is fascinating to visualize and interpret this data to see how the priority of post offices for vital communication and shipping may have changed in the past centuries. This is especially so since this data allows visualization of U.S. infrastructure growth in recent years as well as U.S. westward expansion.</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="in">post_offices &lt;- read_csv("post_offices.csv") |&gt;</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="in">filter(!is.na(established) &amp; established &gt;= 1800 &amp; established &lt;= 2020) |&gt;</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="in">mutate(est_decade = established - established %% 10)</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="in">decade_summary &lt;- post_offices |&gt;</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="in">  count(est_decade) |&gt;</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="in">  filter(est_decade &gt;= 1800) |&gt;</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(period = ifelse(est_decade &lt; 1900, "early", "modern"))</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(decade_summary, aes(x = est_decade, y = n, fill = period)) +</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_col() +</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Post Office Establishments by Decade",</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="in">    x = "Decade",</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="in">    y = "Number of Post Offices",</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="in">    fill = "Time Period"</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="in">  ) +</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>In the plot above, we see the number of post offices built from 1800 to 2000. There is a clear surge in the 1800s with this number eventually dwindling down, fueling the hypothesis for this project since there may have been more of an emphasis in post offices in the 1800s.</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = FALSE}</span></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="in">post_offices &lt;- read_csv("post_offices.csv") |&gt;</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="in">filter(!is.na(established) &amp; established &gt;= 1800 &amp; established &lt;= 2020) |&gt;</span></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="in">mutate(est_decade = established - established %% 10)</span></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="in">decade_summary &lt;- post_offices |&gt;</span></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="in">  count(est_decade) |&gt;</span></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="in">  filter(est_decade &gt;= 1800) |&gt;</span></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(period = ifelse(est_decade &lt; 1900, "early", "modern"))</span></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="in">head(decade_summary)</span></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="in">obs_diff &lt;- decade_summary |&gt;</span></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(period) |&gt;</span></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="in">  summarize(mean_n = mean(n)) |&gt;</span></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="in">  summarize(diff = mean_n[period == "early"] - mean_n[period == "modern"]) |&gt;</span></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="in">  pull(diff)</span></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="in">obs_diff</span></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="in">permute_diff &lt;- function(df = decade_summary) {</span></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="in">  shuffled_period &lt;- sample(df$period)  # randomly shuffle early/modern labels</span></span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="in">  df |&gt;</span></span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="in">    mutate(shuffled = shuffled_period) |&gt;</span></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="in">    group_by(shuffled) |&gt;</span></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="in">    summarize(mean_n = mean(n)) |&gt;</span></span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="in">    summarize(diff = mean_n[shuffled == "early"] - mean_n[shuffled == "modern"]) |&gt;</span></span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="in">    pull(diff)</span></span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="in">set.seed(2025)</span></span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="in">null_diffs &lt;- map_dbl(1:1000, ~permute_diff())</span></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="in">tibble(null_diff = null_diffs) |&gt;</span></span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = null_diff)) +</span></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram(bins = 30) +</span></span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_vline(xintercept = obs_diff) +</span></span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(</span></span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Permutation Test: Post Office Establishment Trend",</span></span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="in">    subtitle = "Null distribution of difference in means (early - modern)",</span></span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="in">    x = "Difference in mean # of post offices per decade",</span></span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="in">    y = "Frequency"</span></span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="in">  ) +</span></span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="in">mean(null_diffs &gt;= obs_diff)</span></span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>In this histogram running our permutation test, we observe the null distribution of the difference in average post offices per decade between early and modern periods. This assumes "early" and "modern" have no real effect under the null hypothesis. Each bar is one of 1,000 simulated differences after the labels had been randomly shuffled.</span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>The red dashed value is our observed value is quite far to the right, suggesting that a drastic difference is not likely just because of chance. This provides evidence for our hypothesis that the early period of the U.S. before 1900 had much more post office development than the modern period. This makes sense since U.S. historical expansion was quite concentrated in the 1800s as westward expansion was in its prime as well as the U.S. government attempting to spread out its infrastructure. mean(null_diffs <span class="sc">\&gt;</span>= obs_diff)</span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>The p-value being 0.005 means only 0.5% of the permuted differences were as large as the observed ones, rejecting the null hypothesis. This supports that the pre-1900s saw more growth in post offices than the modern period. This is an interesting glimpse into the early development of the United States and how the value of post offices may have shifted over the history of our country as well our priorities as a society.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Post Office Development Permutation Test"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Franciszek Wiercigroch"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html: </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">      source: true</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">      toggle: false</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">      caption: "Code"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>The data for this project of post offices that operated in the United States between 1639-2000 comes from Cameron Blevins and Richard W. Helbock in the Harvard Dataverse. For this project, I chose the first option which is conducting a permutation test by simulator behavior under the null hypothesis. Specifically, I sought to see whether the average number of post offices established on a per decade basis has decreased in recent years, specifically before 1900 compared to after 1900 until 2000.</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>This dataset provides context for how many post offices were implemented yearly since the birth of the U.S. I mutated another variable into established decade in order to group the amount of post offices built into a decade basis for easier visualization. Then, this data is grouped into an early time period which is before 1900 and then after 1900 which would be considered modern time.</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>Acknowledging the critical role post offices played in the development of the U.S., it is fascinating to visualize and interpret this data to see how the priority of post offices for vital communication and shipping may have changed in the past centuries. This is especially so since this data allows visualization of U.S. infrastructure growth in recent years as well as U.S. westward expansion.</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>In the plot above, we see the number of post offices built from 1800 to 2000. There is a clear surge in the 1800s with this number eventually dwindling down, fueling the hypothesis for this project since there may have been more of an emphasis in post offices in the 1800s.</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>In this histogram running our permutation test, we observe the null distribution of the difference in average post offices per decade between early and modern periods. This assumes "early" and "modern" have no real effect under the null hypothesis. Each bar is one of 1,000 simulated differences after the labels had been randomly shuffled.</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>The red dashed value is our observed value is quite far to the right, suggesting that a drastic difference is not likely just because of chance. This provides evidence for our hypothesis that the early period of the U.S. before 1900 had much more post office development than the modern period. This makes sense since U.S. historical expansion was quite concentrated in the 1800s as westward expansion was in its prime as well as the U.S. government attempting to spread out its infrastructure. mean(null_diffs <span class="sc">\&gt;</span>= obs_diff)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>The p-value being 0.005 means only 0.5% of the permuted differences were as large as the observed ones, rejecting the null hypothesis. This supports that the pre-1900s saw more growth in post offices than the modern period. This is an interesting glimpse into the early development of the United States and how the value of post offices may have shifted over the history of our country as well our priorities as a society.</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo = FALSE}</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-alt: "Bar chart showing the number of post offices established per decade from 1800 to 2020. There is a rise during the 1800s, followed by a decline in the 20th century. Bars are colored based on if they fall in the early period (before 1900) or modern period (after 1900). Histogram shows the null distribution of differences in average post office establishments per decade between early and modern periods. A red dashed vertical line shows the observed difference, which lies on the far right side of the distribution. The p-value is 0.005}</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="in">post_offices &lt;- read_csv("post_offices.csv") |&gt;</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="in">  filter(!is.na(established), established &gt;= 1800, established &lt;= 2020) |&gt;</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(est_decade = established - established %% 10)</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="in">decade_summary &lt;- post_offices |&gt;</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="in">  count(est_decade) |&gt;</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="in">  filter(est_decade &gt;= 1800) |&gt;</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(period = ifelse(est_decade &lt; 1900, "early", "modern"))</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(decade_summary, aes(x = est_decade, y = n, fill = period)) +</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_col() +</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Post Office Establishments by Decade",</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="in">    x = "Decade",</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="in">    y = "Number of Post Offices",</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="in">    fill = "Time Period"</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="in">  ) +</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="in">obs_diff &lt;- decade_summary |&gt;</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(period) |&gt;</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="in">  summarize(mean_n = mean(n), .groups = "drop") |&gt;</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="in"> arrange(factor(period, levels = c("modern", "early"))) |&gt;</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="in">summarize(diff = diff(mean_n)) |&gt;</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="in">  pull(diff)</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="in">permute_diff &lt;- function(df = decade_summary) {</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="in">  df |&gt;</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="in">    mutate(shuffled = sample(period)) |&gt;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="in">    group_by(shuffled) |&gt;</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="in">    summarize(mean_n = mean(n), .groups = "drop") |&gt;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="in">   arrange(factor(shuffled, levels = c("modern", "early"))) |&gt;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="in">summarize(diff = diff(mean_n)) |&gt;</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="in">    pull(diff)</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="in">set.seed(2025)</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="in">null_diffs &lt;- map_dbl(1:1000, ~permute_diff())</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="in">tibble(null_diff = null_diffs) |&gt;</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = null_diff)) +</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram(bins = 30) +</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_vline(xintercept = obs_diff, color = "red", linetype = "dashed") +</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Permutation Test: Post Office Establishment Trend",</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="in">    subtitle = "Null distribution of difference in means",</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="in">    x = "Difference in mean # of post offices per decade",</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="in">    y = "Frequency"</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="in">  ) +</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="in">mean(null_diffs &gt;= obs_diff)</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>Originally, this is a TidyTuesday analysis by jonthegeek. This data comes form Cameron Blevins and Richard W. Helbock. They have 166,140 post offices in the United States between 1639 and 2000. Through this, we see a year-by-year snapshot of the national postal system over several decades, making this an extremely expansive data set.</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>"Blevins, Cameron; Helbock, Richard W., 2021, "US Post Offices", <span class="ot">&lt;https://doi.org/10.7910/DVN/NUKCNA&gt;</span>, Harvard Dataverse, V1, UNF:6:8ROmiI5/4qA8jHrt62PpyA== <span class="sc">\[</span>fileUNF<span class="sc">\]</span>"</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

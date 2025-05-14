@@ -20,7 +20,9 @@ The source of this code is from the Kaggle website showcasing every quote from e
 
 This first line of code visualizes what word comes up the most after a character in The Office says 'hey'! To create the first graph, I filtered each line for the word "hey" and extracted the word immediately following it using a regular expression. I then grouped those words to count how often each came after "hey" and visualized the top 10. It makes sense that after hey the most common word said is guys, probably Michael coming in to annoy everyone in the workplace!
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, #| fig.alt: "Horizontal bar chart displaying the most common words that appear  after 'hey' in lines from The Office. 'guys' is the most frequent, followed by several names or common greetings."}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+
+#| fig.alt: "Horizontal bar chart displaying the most common words that appear  after 'hey' in lines from The Office. 'guys' is the most frequent, followed by several names or common greetings."
 
 office_lines <- read_csv('the-office_lines.csv', show_col_types = FALSE)
 
@@ -48,7 +50,10 @@ ggplot(hey_counts, aes(x = reorder(after_hey, count), y = count, fill = after_he
 
 I thought I was on to something with this idea, thinking there would be some clear distinctions with this question. For this graph, I calculated the number of characters in each line and then averaged those values by character name. . The character unsurprisingly with the longest character lines is Michael, which makes sense since he would have a lot of funny monologues that contributed a lot to his development as a character and a manager. David Brent is in the UK version of The Office which I had to look up, but would also make sense that he is the second character. The other characters have more on par average line lengths, so this seems like the longer the character lines are is due to some sort of promotional / special event occurring in the episode rather than regular dialogue.
 
-```{r, echo= FALSE, warning=FALSE, message=FALSE, error=FALSE, fig.alt: "Horizontal bar chart visualizing the top 10 characters in The Office with the longest average line lengths. Michael is the highest one who ranks, so he speaks in longer sentences."}
+```{r, echo= FALSE, warning=FALSE, message=FALSE, error=FALSE}
+
+#| fig-alt: "Horizontal bar chart visualizing the top 10 characters in The Office with the longest average line lengths. Michael is the highest one who ranks, so he speaks in longer sentences."
+
 office_lines <- office_lines %>%
   mutate(Character = str_trim(str_to_title(Character)),  
          line_length = str_length(Line)) 
@@ -73,7 +78,9 @@ ggplot(talkative_characters, aes(x = reorder(Character, avg_line_length), y = av
 
 This one I could have easily predicted! I feel like I can always hear Michael's voice in the back of my head, answering some sort of questions. This chart is based on detecting whether a line ends with a question mark. I used a regular expression to determine the lines and then grouped them by the character, and counted the number of questions by each character. Jim comes to a near second, which is not something I expected in this dataset.
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, fig.alt: "Horizontal bar chart showing the top 10 characters in The Office who ask the most questions. Michael is the character with the most  questions asked, with Jim and Dwight following."}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+
+#| fig.alt: "Horizontal bar chart showing the top 10 characters in The Office who ask the most questions. Michael is the character with the most  questions asked, with Jim and Dwight following."
 
 office_lines <- office_lines %>%
   mutate(is_question = str_detect(Line, "\\?$")) 
@@ -100,7 +107,11 @@ Here, I used a regular expression to detect lines ending in an exclamation mark.
 
 But Dwight comes to a close second. This is really interesting to me that they come so close, but they did clash with a lot of characters.
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, fig.alt:Horizontal bar chart showing the top 10 characters in The Office with the most exclamatory lines, based on lines ending with an exclamation mark. Michael appears at the top, followed by other energetic characters." }
+```{r, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+
+#| fig-alt: "Horizontal bar chart showing the top 10 characters in The Office with the most exclamatory lines, based on lines ending with an exclamation mark. Michael appears the most followed by other energetic characters." 
+
+
 office_lines <- office_lines %>%
   mutate(is_exclamation = str_detect(Line, "\\!$"))
 

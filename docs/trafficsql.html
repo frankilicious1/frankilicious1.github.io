@@ -173,7 +173,7 @@ div.csl-indent {
   </li>  
         <li>
     <a class="dropdown-item" href="./ethics.html">
- <span class="dropdown-text">Ethics Project</span></a>
+ <span class="dropdown-text">Ethics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./trafficsql.html">
@@ -181,6 +181,10 @@ div.csl-indent {
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./finalpres.html"> 
+<span class="menu-text">Final Presentation</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -218,7 +222,7 @@ div.csl-indent {
 
 
 <p><strong>Introduction</strong></p>
-<p>This SQL wrangling analysis focuses on the Stanford Open Policing Project <span class="citation" data-cites="piersons">Pierson et al. (<a href="#ref-piersons" role="doc-biblioref">2020</a>)</span> which standardizes data on vehicle and pedestrian spots from law enforcement across the country in order to combine statistical analysis and data journalism. My project focuses on the data from Charlotte, Chicago, and New Orleans, with this data coming from the Stanford Open Policing Project published by Pierson et al.&nbsp;(2020). <span class="citation" data-cites="piersons">Pierson et al. (<a href="#ref-piersons" role="doc-biblioref">2020</a>)</span> All of the data is from 2020 but Chicago’s is specifically from 2023. The population sizes of the cities do vary since Charlotte has approximately 900,000 individuals, Chicago having 2.6 million, and New Orleans having 364,000. While this may seem unusual to analyze cities in such different populations, I wanted to have a city of a small, medium, and large caliber so that the metric used of search rate per stop controls for total stop volume.</p>
+<p>This SQL wrangling analysis focuses on the Stanford Open Policing Project <span class="citation" data-cites="piersons">Pierson et al. (<a href="#ref-piersons" role="doc-biblioref">2020</a>)</span> which standardizes data on vehicle and pedestrian spots from law enforcement across the country in order to combine statistical analysis and data journalism. My project focuses on the data from Charlotte, Chicago, and New Orleans, with this data coming from the Stanford Open Policing Project published by Pierson et al.&nbsp;(2020). <span class="citation" data-cites="piersons">Pierson et al. (<a href="#ref-piersons" role="doc-biblioref">2020</a>)</span> The data is measured post-pandemic, which is good context since this closely follows the George Floyd movement. The population of the cities vary since Charlotte has 900,000 residents, Chicago 2.6 million, and New Orleans 364,000. While this may seem unusual to analyze cities in such different populations, I wanted to have cities of size small, medium, large so that the metric used of search rate per stop controls for total stop volume.</p>
 <p>This bar chart compares the search rate by age group across Charlotte, Chicago, and New Orleans.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -234,7 +238,7 @@ div.csl-indent {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="trafficsql_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="trafficsql_files/figure-html/fig-alt-&quot;GroupedbarchartcomparingnowthearrestratesbyagegroupacrossCharlotte,Chicago,andNewOrleans.NewOrleansshowsthehighestarrestrateforminors,whileChicagohasatadhigharrestratesforadultsaged18to45&quot;-1.png" class="img-fluid figure-img">{#fig-alt:“GroupedbarchartcomparingnowthearrestratesbyagegroupacrossCharlotte,Chicago,andNewOrleans.NewOrleansshowsthehighestarrestrateforminors,whileChicagohasatadhigharrestratesforadultsaged18to45” width=672}</p>
 </figure>
 </div>
 </div>
@@ -287,7 +291,7 @@ div.csl-indent {
 </table>
 </div>
 </div>
-<p>In Charlotte’s situation, search rates and arrest rates decline with wage. These rates are in the medium ratio compared to Chicago and New Orleans. There is an arrest rate that is highest with minors and younger adults, lining up with other relationships. There is a clear age-related disparity in enforcement, especially since senior citizens have less than 1% of search and arrest rates based on total stops.</p>
+<p>In Charlotte’s situation, search rates and arrest rates decline with wage. These rates are in the medium ratio compared to Chicago and New Orleans. There is an arrest rate that is highest with minors and younger adults, lining up with other relationships. There is a an age-related disparity in enforcement, especially since senior citizens have less than 1% of search and arrest rates based on total stops.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -335,7 +339,7 @@ div.csl-indent {
 </table>
 </div>
 </div>
-<p>Chicago has the lowest search rates with them never exceeding 1.53%. However, something that is interesting to note here is that even though 1% of individuals aged 18-30 are searched, over 17% are arrested. This may be due to stops being more warranted in Chicago, meaning they may be due to warrants or other severe violations that are not related to trivial stops like speeding.</p>
+<p>Chicago has the lowest search rates with them never exceeding 1.53%. However, something that is interesting to note here is that even though 1% of individuals aged 18-30 are searched, over 17% are arrested. This may be influenced by stops being more warranted in Chicago, meaning they may be due to warrants or other severe violations that are not related to trivial stops like speeding.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -344,46 +348,46 @@ div.csl-indent {
 <tr class="header">
 <th style="text-align: left;">age_group</th>
 <th style="text-align: right;">total_stops</th>
-<th style="text-align: right;">search_rate</th>
 <th style="text-align: right;">arrest_rate</th>
+<th style="text-align: right;">search_rate</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">&lt;18</td>
 <td style="text-align: right;">18487</td>
-<td style="text-align: right;">0.2106</td>
 <td style="text-align: right;">0.2801</td>
+<td style="text-align: right;">0.2106</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">18–30</td>
 <td style="text-align: right;">220256</td>
-<td style="text-align: right;">0.1612</td>
 <td style="text-align: right;">0.1926</td>
+<td style="text-align: right;">0.1612</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">31–45</td>
 <td style="text-align: right;">150491</td>
-<td style="text-align: right;">0.1543</td>
 <td style="text-align: right;">0.1930</td>
+<td style="text-align: right;">0.1543</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">46–60</td>
 <td style="text-align: right;">90071</td>
-<td style="text-align: right;">0.1253</td>
 <td style="text-align: right;">0.1656</td>
+<td style="text-align: right;">0.1253</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">60+</td>
 <td style="text-align: right;">20001</td>
-<td style="text-align: right;">0.0613</td>
 <td style="text-align: right;">0.0906</td>
+<td style="text-align: right;">0.0613</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>New Orleans by far has the highest arrest rates, with minors being arrested in 28% of total stops. Search rates are also quite high for young drivers with the rate being at 21%. There may be even less of an age-related disparity in New Orleans since their arrest rates for individuals 60+ are 9% and search rates 6%, suggesting a much stricter enforcement-based approach irrespective of age. This heavy policing in youth may be due to a lack of policies helping teenagers with their time like cocurricular and extracurricular programming funded by the city. In addition, law enforcement may bias younger individuals as more likely to be reckless, associating them with trouble which is common in overpoliced communities.</p>
+<p>New Orleans by far has the highest arrest rates, with minors being arrested in 28% of total stops. Search rates are also quite high for young drivers with the rate being at 21%. There may be even less of an age-related disparity in New Orleans since their arrest rates for individuals 60+ are 9% and search rates 6%, possibly suggesting a much stricter enforcement-based approach irrespective of age. This heavy policing in youth may be potentially related to to a lack of policies helping teenagers with their time like cocurricular and extracurricular programming funded by the city. In addition, law enforcement could potentially bias younger individuals as more likely to be reckless, associating them with trouble.</p>
 <p>Overall, our data shows that youth under 30 are under high scrutiny by police, especially in New Orleans with its high search and arrest rates. In Chicago, the data is quite interesting since it presents rare searches but high arrests. This may reflect a difference in philosophy of the respective cities policing. The consequences are quite real especially since youth in New Orleans are arrested in nearly one-third of stops, a reality that may shape their access to education and employment for years. Understanding policing trends and pairing them with research is essential to safeguard communities.</p>
 
 
@@ -886,7 +890,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>**Introduction**</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>This SQL wrangling analysis focuses on the Stanford Open Policing Project @piersons which standardizes data on vehicle and pedestrian spots from law enforcement across the country in order to combine statistical analysis and data journalism. My project focuses on the data from Charlotte, Chicago, and New Orleans, with this data coming from the Stanford Open Policing Project published by Pierson et al. (2020). @piersons All of the data is from 2020 but Chicago's is specifically from 2023. The population sizes of the cities do vary since Charlotte has approximately 900,000 individuals, Chicago having 2.6 million, and New Orleans having 364,000. While this may seem unusual to analyze cities in such different populations, I wanted to have a city of a small, medium, and large caliber so that the metric used of search rate per stop controls for total stop volume.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>This SQL wrangling analysis focuses on the Stanford Open Policing Project @piersons which standardizes data on vehicle and pedestrian spots from law enforcement across the country in order to combine statistical analysis and data journalism. My project focuses on the data from Charlotte, Chicago, and New Orleans, with this data coming from the Stanford Open Policing Project published by Pierson et al. (2020). @piersons The data is measured post-pandemic, which is good context since this closely follows the George Floyd movement. The population of the cities vary since Charlotte has 900,000 residents, Chicago 2.6 million, and New Orleans 364,000. While this may seem unusual to analyze cities in such different populations, I wanted to have cities of size small, medium, large so that the metric used of search rate per stop controls for total stop volume.</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">con_traffic &lt;- DBI::dbConnect(</span></span>
@@ -944,118 +948,121 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
 <span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2)</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-alt: "Bar chart with groups comparing search rates by age group across Charlotte, Chicago, and New Orleans. New Orleans has the highest search rates for minors and young adults, while Chicago has the lowest across all ages."</span></span>
 <span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(age_data, aes(x = age_group, y = search_rate, fill = city)) +</span></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_col(position = "dodge") +</span></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(</span></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Search Rate by Age Group in Charlotte, Chicago, and New Orleans",</span></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="in">    x = "Age Group",</span></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="in">    y = "Search Rate",</span></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="in">    fill = "City"</span></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="in">  ) </span></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>New Orleans stands out as having the highest search rates among all age demographics, especially for drivers under 30 with the rate being around 0.2 for minors and just above 0.15 for adults under 30. Charlotte has search rates that are a bit more moderate and declining with age, while Chicago's search rates remain much lower regardless of age. Some reasons for New Orleans have such high search rates may be due to reports of the city over policing its communities. Even though the height of this controversy was in 2013, the remnants of this may still remain. Chicago may have placed more reforms for its policing efforts, especially since its 2014 case with Laquan McDonald sparked controversy in communities. Chicago may have shifted their policing more towards data-driven policing or citation based enforcement so there aren't as many physical searches. In addition, training methods in police departments across the U.S. may vary extensively which can account for Chicago's low search rates regardless of age group.</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2)</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(age_data, aes(x = age_group, y = search_rate, fill = city)) +</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_col(position = "dodge") +</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Search Rate by Age Group in Charlotte, Chicago, and New Orleans",</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="in">    x = "Age Group",</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="in">    y = "Search Rate",</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="in">    fill = "City"</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="in">  ) </span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2)</span></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(age_data, aes(x = age_group, y = arrest_rate, fill = city)) +</span></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_col(position = "dodge") +</span></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(</span></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Arrest Rate by Age Group in Charlotte, Chicago, and New Orleans",</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="in">    x = "Age Group",</span></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="in">    y = "Arrest Rate",</span></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="in">    fill = "City"</span></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>The arrest rates tell quite a story here across the cities of Charlotte, Chicago, and New Orleans. New Orleans has a massively higher arrest rate for minors with it being at almost 28%. Chicago has high arrests for adults 18-45 with them being almost at 20%. Despite Chicago having low search rates, stops likely escalate to arrests. Charlotte consistently across age groups has lower arrest rates, with this indicating extreme variance in how these cities approach policing. The 28% arrest rate for minors in New Orleans is a bit alarming because of overcriminalization in youth and how this may shape their future having a record. This is why understanding the factors of policing is critical to ensuring healthy communities that are functional.</span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{sql connection= con_traffic, echo=FALSE}</span></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="in">SELECT </span></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="in">  CASE </span></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age &lt; 18 THEN '&lt;18'</span></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 18 AND 30 THEN '18–30'</span></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 31 AND 45 THEN '31–45'</span></span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 46 AND 60 THEN '46–60'</span></span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="in">    ELSE '60+'</span></span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="in">  END AS age_group,</span></span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="in">  COUNT(*) AS total_stops,</span></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="in">  ROUND(AVG(IFNULL(search_conducted, 0)), 4) AS search_rate,</span></span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="in">  ROUND(AVG(IFNULL(arrest_made, 0)), 4) AS arrest_rate</span></span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="in">FROM nc_charlotte_2020_04_01</span></span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="in">WHERE subject_age IS NOT NULL</span></span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="in">GROUP BY age_group</span></span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="in">ORDER BY </span></span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="in">  CASE </span></span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '&lt;18' THEN 1</span></span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '18–30' THEN 2</span></span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '31–45' THEN 3</span></span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '46–60' THEN 4</span></span>
-<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="in">    ELSE 5</span></span>
-<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="in">  END;</span></span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>In Charlotte's situation, search rates and arrest rates decline with wage. These rates are in the medium ratio compared to Chicago and New Orleans. There is an arrest rate that is highest with minors and younger adults, lining up with other relationships. There is a clear age-related disparity in enforcement, especially since senior citizens have less than 1% of search and arrest rates based on total stops.</span>
-<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="in">```{sql connection= con_traffic, echo=FALSE}</span></span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="in">SELECT </span></span>
-<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="in">  CASE </span></span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age &lt; 18 THEN '&lt;18'</span></span>
-<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 18 AND 30 THEN '18–30'</span></span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 31 AND 45 THEN '31–45'</span></span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 46 AND 60 THEN '46–60'</span></span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="in">    ELSE '60+'</span></span>
-<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="in">  END AS age_group,</span></span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="in">  COUNT(*) AS total_stops,</span></span>
-<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="in">  ROUND(AVG(IFNULL(search_conducted, 0)), 4) AS search_rate,</span></span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a><span class="in">  ROUND(AVG(IFNULL(arrest_made, 0)), 4) AS arrest_rate</span></span>
-<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="in">FROM il_chicago_2023_01_26</span></span>
-<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="in">WHERE subject_age IS NOT NULL</span></span>
-<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="in">GROUP BY age_group</span></span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="in">ORDER BY </span></span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="in">  CASE </span></span>
-<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '&lt;18' THEN 1</span></span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '18–30' THEN 2</span></span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '31–45' THEN 3</span></span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '46–60' THEN 4</span></span>
-<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="in">    ELSE 5</span></span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="in">  END;</span></span>
-<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>Chicago has the lowest search rates with them never exceeding 1.53%. However, something that is interesting to note here is that even though 1% of individuals aged 18-30 are searched, over 17% are arrested. This may be due to stops being more warranted in Chicago, meaning they may be due to warrants or other severe violations that are not related to trivial stops like speeding.</span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{sql connection= con_traffic, echo=FALSE}</span></span>
-<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="in">SELECT </span></span>
-<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="in">  CASE </span></span>
-<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age &lt; 18 THEN '&lt;18'</span></span>
-<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 18 AND 30 THEN '18–30'</span></span>
-<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 31 AND 45 THEN '31–45'</span></span>
-<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 46 AND 60 THEN '46–60'</span></span>
-<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a><span class="in">    ELSE '60+'</span></span>
-<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="in">  END AS age_group,</span></span>
-<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a><span class="in">  COUNT(*) AS total_stops,</span></span>
-<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="in">  ROUND(AVG(IFNULL(search_conducted, 0)), 4) AS search_rate,</span></span>
-<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a><span class="in">  ROUND(AVG(IFNULL(arrest_made, 0)), 4) AS arrest_rate</span></span>
-<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="in">FROM la_new_orleans_2020_04_01</span></span>
-<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a><span class="in">WHERE subject_age IS NOT NULL</span></span>
-<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="in">GROUP BY age_group</span></span>
-<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a><span class="in">ORDER BY </span></span>
-<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="in">  CASE </span></span>
-<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '&lt;18' THEN 1</span></span>
-<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '18–30' THEN 2</span></span>
-<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '31–45' THEN 3</span></span>
-<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '46–60' THEN 4</span></span>
-<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a><span class="in">    ELSE 5</span></span>
-<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a><span class="in">  END;</span></span>
-<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>New Orleans by far has the highest arrest rates, with minors being arrested in 28% of total stops. Search rates are also quite high for young drivers with the rate being at 21%. There may be even less of an age-related disparity in New Orleans since their arrest rates for individuals 60+ are 9% and search rates 6%, suggesting a much stricter enforcement-based approach irrespective of age. This heavy policing in youth may be due to a lack of policies helping teenagers with their time like cocurricular and extracurricular programming funded by the city. In addition, law enforcement may bias younger individuals as more likely to be reckless, associating them with trouble which is common in overpoliced communities.</span>
-<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>Overall, our data shows that youth under 30 are under high scrutiny by police, especially in New Orleans with its high search and arrest rates. In Chicago, the data is quite interesting since it presents rare searches but high arrests. This may reflect a difference in philosophy of the respective cities policing. The consequences are quite real especially since youth in New Orleans are arrested in nearly one-third of stops, a reality that may shape their access to education and employment for years. Understanding policing trends and pairing them with research is essential to safeguard communities.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>New Orleans stands out as having the highest search rates among all age demographics, especially for drivers under 30 with the rate being around 0.2 for minors and just above 0.15 for adults under 30. Charlotte has search rates that are a bit more moderate and declining with age, while Chicago's search rates remain much lower regardless of age. Some reasons for New Orleans have such high search rates may be due to reports of the city over policing its communities. Even though the height of this controversy was in 2013, the remnants of this may still remain. Chicago may have placed more reforms for its policing efforts, especially since its 2014 case with Laquan McDonald sparked controversy in communities. Chicago may have shifted their policing more towards data-driven policing or citation based enforcement so there aren't as many physical searches. In addition, training methods in police departments across the U.S. may vary extensively which can account for Chicago's low search rates regardless of age group.</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE, fig-alt: "Grouped bar chart comparing now the arrest rates by age group across Charlotte, Chicago, and New Orleans. New Orleans shows the highest arrest rate for minors, while Chicago has a tad high arrest rates for adults aged 18 to 45"}</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2)</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(age_data, aes(x = age_group, y = arrest_rate, fill = city)) +</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_col(position = "dodge") +</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Arrest Rate by Age Group in Charlotte, Chicago, and New Orleans",</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="in">    x = "Age Group",</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="in">    y = "Arrest Rate",</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="in">    fill = "City"</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>The arrest rates tell quite a story here across the cities of Charlotte, Chicago, and New Orleans. New Orleans has a massively higher arrest rate for minors with it being at almost 28%. Chicago has high arrests for adults 18-45 with them being almost at 20%. Despite Chicago having low search rates, stops likely escalate to arrests. Charlotte consistently across age groups has lower arrest rates, with this indicating extreme variance in how these cities approach policing. The 28% arrest rate for minors in New Orleans is a bit alarming because of overcriminalization in youth and how this may shape their future having a record. This is why understanding the factors of policing is critical to ensuring healthy communities that are functional.</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{sql connection= con_traffic, echo=FALSE}</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="in">SELECT </span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="in">  CASE </span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age &lt; 18 THEN '&lt;18'</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 18 AND 30 THEN '18–30'</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 31 AND 45 THEN '31–45'</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 46 AND 60 THEN '46–60'</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="in">    ELSE '60+'</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="in">  END AS age_group,</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="in">  COUNT(*) AS total_stops,</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="in">  ROUND(AVG(IFNULL(search_conducted, 0)), 4) AS search_rate,</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="in">  ROUND(AVG(IFNULL(arrest_made, 0)), 4) AS arrest_rate</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="in">FROM nc_charlotte_2020_04_01</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="in">WHERE subject_age IS NOT NULL</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="in">GROUP BY age_group</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="in">ORDER BY </span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="in">  CASE </span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '&lt;18' THEN 1</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '18–30' THEN 2</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '31–45' THEN 3</span></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '46–60' THEN 4</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="in">    ELSE 5</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="in">  END;</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>In Charlotte's situation, search rates and arrest rates decline with wage. These rates are in the medium ratio compared to Chicago and New Orleans. There is an arrest rate that is highest with minors and younger adults, lining up with other relationships. There is a an age-related disparity in enforcement, especially since senior citizens have less than 1% of search and arrest rates based on total stops.</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{sql connection= con_traffic, echo=FALSE}</span></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="in">SELECT </span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="in">  CASE </span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age &lt; 18 THEN '&lt;18'</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 18 AND 30 THEN '18–30'</span></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 31 AND 45 THEN '31–45'</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 46 AND 60 THEN '46–60'</span></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="in">    ELSE '60+'</span></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a><span class="in">  END AS age_group,</span></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="in">  COUNT(*) AS total_stops,</span></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="in">  ROUND(AVG(IFNULL(search_conducted, 0)), 4) AS search_rate,</span></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="in">  ROUND(AVG(IFNULL(arrest_made, 0)), 4) AS arrest_rate</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="in">FROM il_chicago_2023_01_26</span></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="in">WHERE subject_age IS NOT NULL</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="in">GROUP BY age_group</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="in">ORDER BY </span></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="in">  CASE </span></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '&lt;18' THEN 1</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '18–30' THEN 2</span></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '31–45' THEN 3</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '46–60' THEN 4</span></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="in">    ELSE 5</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="in">  END;</span></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>Chicago has the lowest search rates with them never exceeding 1.53%. However, something that is interesting to note here is that even though 1% of individuals aged 18-30 are searched, over 17% are arrested. This may be influenced by stops being more warranted in Chicago, meaning they may be due to warrants or other severe violations that are not related to trivial stops like speeding.</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a><span class="in">```{sql connection= con_traffic, echo=FALSE}</span></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="in">SELECT </span></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="in">  CASE </span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age &lt; 18 THEN '&lt;18'</span></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 18 AND 30 THEN '18–30'</span></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 31 AND 45 THEN '31–45'</span></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN subject_age BETWEEN 46 AND 60 THEN '46–60'</span></span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="in">    ELSE '60+'</span></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a><span class="in">  END AS age_group,</span></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="in">  COUNT(*) AS total_stops,</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a><span class="in">  ROUND(AVG(arrest_made), 4) AS arrest_rate,</span></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="in">  ROUND(AVG(search_conducted), 4) AS search_rate</span></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a><span class="in">FROM la_new_orleans_2020_04_01</span></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="in">WHERE subject_age IS NOT NULL</span></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="in">GROUP BY age_group</span></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a><span class="in">ORDER BY </span></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="in">  CASE </span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '&lt;18' THEN 1</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '18–30' THEN 2</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '31–45' THEN 3</span></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="in">    WHEN age_group = '46–60' THEN 4</span></span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="in">    ELSE 5</span></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a><span class="in">  END;</span></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>New Orleans by far has the highest arrest rates, with minors being arrested in 28% of total stops. Search rates are also quite high for young drivers with the rate being at 21%. There may be even less of an age-related disparity in New Orleans since their arrest rates for individuals 60+ are 9% and search rates 6%, possibly suggesting a much stricter enforcement-based approach irrespective of age. This heavy policing in youth may be potentially related to to a lack of policies helping teenagers with their time like cocurricular and extracurricular programming funded by the city. In addition, law enforcement could potentially bias younger individuals as more likely to be reckless, associating them with trouble.</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>Overall, our data shows that youth under 30 are under high scrutiny by police, especially in New Orleans with its high search and arrest rates. In Chicago, the data is quite interesting since it presents rare searches but high arrests. This may reflect a difference in philosophy of the respective cities policing. The consequences are quite real especially since youth in New Orleans are arrested in nearly one-third of stops, a reality that may shape their access to education and employment for years. Understanding policing trends and pairing them with research is essential to safeguard communities.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

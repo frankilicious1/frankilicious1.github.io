@@ -27,7 +27,9 @@ The red dashed value is our observed value is quite far to the right, suggesting
 
 The p-value being 0.005 means only 0.5% of the permuted differences were as large as the observed ones, rejecting the null hypothesis. This supports that the pre-1900s saw more growth in post offices than the modern period. This is an interesting glimpse into the early development of the United States and how the value of post offices may have shifted over the history of our country as well our priorities as a society.
 
-```{r, echo = FALSE, fig.alt: "Bar chart showing the number of post offices established per decade from 1800 to 2020. There is a rise during the 1800s, followed by a decline in the 20th century. Bars are colored based on if they fall in the early period (before 1900) or modern period (after 1900). Histogram shows the null distribution of differences in average post office establishments per decade between early and modern periods. A red dashed vertical line shows the observed difference, which lies on the far right side of the distribution. The p-value is 0.005}
+```{r, echo = FALSE}
+
+#| fig-alt: "Bar chart showing the number of post offices established per decade from 1800 to 2020. There is a rise during the 1800s, followed by a decline in the 20th century. Bars are colored based on if they fall in the early period (before 1900) or modern period (after 1900). Histogram shows the null distribution of differences in average post office establishments per decade between early and modern periods. A red dashed vertical line shows the observed difference, which lies on the far right side of the distribution. The p-value is 0.005}
 
 library(tidyverse)
 

@@ -73,7 +73,9 @@ ORDER BY city,
 
 This bar chart compares the search rate by age group across Charlotte, Chicago, and New Orleans.
 
-```{r, echo=FALSE, fig.alt: "Bar chart with groups comparing search rates by age group across Charlotte, Chicago, and New Orleans. New Orleans has the highest search rates for minors and young adults, while Chicago has the lowest across all ages."}
+```{r, echo=FALSE}
+
+#| fig-alt: "Bar chart with groups comparing search rates by age group across Charlotte, Chicago, and New Orleans. New Orleans has the highest search rates for minors and young adults, while Chicago has the lowest across all ages."
 
 library(ggplot2)
 
@@ -89,7 +91,8 @@ ggplot(age_data, aes(x = age_group, y = search_rate, fill = city)) +
 
 New Orleans stands out as having the highest search rates among all age demographics, especially for drivers under 30 with the rate being around 0.2 for minors and just above 0.15 for adults under 30. Charlotte has search rates that are a bit more moderate and declining with age, while Chicago's search rates remain much lower regardless of age. Some reasons for New Orleans have such high search rates may be due to reports of the city over policing its communities. Even though the height of this controversy was in 2013, the remnants of this may still remain. Chicago may have placed more reforms for its policing efforts, especially since its 2014 case with Laquan McDonald sparked controversy in communities. Chicago may have shifted their policing more towards data-driven policing or citation based enforcement so there aren't as many physical searches. In addition, training methods in police departments across the U.S. may vary extensively which can account for Chicago's low search rates regardless of age group.
 
-```{r, echo=FALSE, fig.alt: "Grouped bar chart comparing now the arrest rates by age group across Charlotte, Chicago, and New Orleans. New Orleans shows the highest arrest rate for minors, while Chicago has a tad high arrest rates for adults aged 18 to 45"}
+```{r, echo=FALSE, fig-alt: "Grouped bar chart comparing now the arrest rates by age group across Charlotte, Chicago, and New Orleans. New Orleans shows the highest arrest rate for minors, while Chicago has a tad high arrest rates for adults aged 18 to 45"}
+
 library(ggplot2)
 ggplot(age_data, aes(x = age_group, y = arrest_rate, fill = city)) +
   geom_col(position = "dodge") +

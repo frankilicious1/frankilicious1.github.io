@@ -10,7 +10,7 @@ This data is taken from a Tidy Tuesday Github repository which explores a Kaggle
 #| echo: false
 #| warning: false
 #| message: false
-#| fig.alt: "Line plot showing the average IMDb rating of Simpsons episodes from 2010 to 2016. Ratings  decline over time, with the highest average rating occurring in the earliest years."
+#| fig-alt: "Line plot showing the average IMDb rating of Simpsons episodes from 2010 to 2016. Ratings  decline over time, with the highest average rating occurring in the earliest years."
 
 library(ggplot2)
 library(dplyr)

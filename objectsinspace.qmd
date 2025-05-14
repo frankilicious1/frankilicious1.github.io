@@ -8,7 +8,10 @@ execute:
 
 Here, my graph shows the number of objects launched into space from 1957 until present day. Credit goes to Our World in Data and the United Nations Office for Outer Space Affairs for collecting national registers of launches submitted to the UN.
 
-```{r launches-by-year, echo=FALSE, fig.alt="This is ashowing the number of space objects launched each year from the dataset. There is a general upward trend, with a notable peak in the most recent year."}
+```{r, echo=FALSE}
+
+#| fig-alt: "This is ashowing the number of space objects launched each year from the dataset. There is a general upward trend, with a notable peak in the most recent year."
+#|
 library(ggplot2)
 library(dplyr)
 library(readr)
